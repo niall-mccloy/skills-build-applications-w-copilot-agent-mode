@@ -1,0 +1,7 @@
+import { useEffect, useState } from 'react'
+import { fetchCollection } from '../api.js'
+import { DataState, ResourcePage } from './ResourcePage.jsx'
+
+// API endpoint: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/
+export default function Users() { const { data, loading, error } = useResource(); return <ResourcePage title="Athletes" intro="The people making progress, one session at a time."><DataState loading={loading} error={error} empty={!data.length} />{!loading && !error && <div className="row g-3">{data.map((user) => <article className="col-md-6 col-xl-4" key={user._id}><div className="user-card"><div className="avatar">{(user.displayName || user.username || '?').charAt(0).toUpperCase()}</div><div><h2>{user.displayName || user.username}</h2><p>{user.email}</p></div></div></article>)}</div>}</ResourcePage> }
+function useResource() { const [state, setState] = useState({ data: [], loading: true, error: '' }); useEffect(() => { const controller = new AbortController(); fetchCollection('users', controller.signal).then((data) => setState({ data, loading: false, error: '' })).catch((error) => { if (error.name !== 'AbortError') setState({ data: [], loading: false, error: error.message }) }); return () => controller.abort() }, []); return state }

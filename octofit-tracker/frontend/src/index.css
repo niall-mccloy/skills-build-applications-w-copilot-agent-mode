@@ -1,0 +1,40 @@
+:root {
+  --text: #52605a;
+  --text-h: #15251d;
+  --bg: #f8f4ec;
+  --heading: Georgia, 'Times New Roman', serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 16px/145% 'Trebuchet MS', sans-serif;
+  color: var(--text);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+body {
+  margin: 0;
+}
+
+#root { min-height: 100vh; }
+h1, h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  letter-spacing: 0;
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: 0;
+  margin: 0 0 8px;
+}
+p {
+  margin: 0;
+}
+

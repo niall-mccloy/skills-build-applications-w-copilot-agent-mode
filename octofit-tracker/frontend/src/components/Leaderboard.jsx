@@ -1,0 +1,7 @@
+import { useEffect, useState } from 'react'
+import { fetchCollection } from '../api.js'
+import { DataState, ResourcePage } from './ResourcePage.jsx'
+
+// API endpoint: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/
+export default function Leaderboard() { const { data, loading, error } = useResource(); return <ResourcePage title="Leaderboard" intro="A little friendly competition goes a long way."><DataState loading={loading} error={error} empty={!data.length} />{!loading && !error && data.map((entry) => <div className="leader-row" key={entry._id}><strong className="rank">{String(entry.rank).padStart(2, '0')}</strong><div className="flex-grow-1"><strong>{entry.user?.displayName || entry.user?.username || entry.user || 'Athlete'}</strong><small>{entry.team?.name || entry.period || 'Current period'}</small></div><strong className="points">{entry.points} pts</strong></div>)}</ResourcePage> }
+function useResource() { const [state, setState] = useState({ data: [], loading: true, error: '' }); useEffect(() => { const controller = new AbortController(); fetchCollection('leaderboard', controller.signal).then((data) => setState({ data: data.sort((a, b) => a.rank - b.rank), loading: false, error: '' })).catch((error) => { if (error.name !== 'AbortError') setState({ data: [], loading: false, error: error.message }) }); return () => controller.abort() }, []); return state }

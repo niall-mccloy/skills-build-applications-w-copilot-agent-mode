@@ -1,0 +1,24 @@
+.app-shell { min-height: 100vh; background: linear-gradient(135deg, #f8f4ec 0%, #e6f1eb 100%); }
+.app-header { max-width: 1126px; margin: auto; padding: 28px 5%; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.brand { color: #15251d; font: 800 1.05rem var(--heading); letter-spacing: .08em; text-decoration: none; white-space: nowrap; }
+.brand span { color: #d95d39; }
+.nav-pills { display: flex; flex-wrap: wrap; gap: 5px; justify-content: flex-end; }
+.nav-pills a { color: #52605a; padding: 7px 12px; font-size: .8rem; text-decoration: none; }
+.nav-pills a.active { color: #15251d; background: #fff; border-radius: 20px; box-shadow: 0 2px 12px #153c2d12; }
+.page-content { max-width: 960px; margin: auto; padding: 7vh 5% 12vh; }
+.home-panel { max-width: 660px; padding: 10vh 0; }
+.home-panel h1, .resource-page h1 { font-size: clamp(3rem, 8vw, 6rem); line-height: .95; margin: 12px 0 24px; letter-spacing: -.06em; }
+.home-panel > p:not(.eyebrow), .page-intro { max-width: 480px; font-size: 1.15rem; }
+.eyebrow { color: #d95d39; font: 700 .7rem var(--mono); letter-spacing: .12em; }
+.home-links { display: flex; gap: 10px; margin-top: 32px; }
+.resource-body { margin-top: 44px; background: #fffdf9cc; border-top: 2px solid #15251d; padding: 22px; }
+.table { --bs-table-bg: transparent; --bs-table-border-color: #deddd5; }
+.table th { color: #778078; font: 700 .7rem var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+.score, .points { color: #d95d39; }
+.leader-row { display: flex; align-items: center; gap: 18px; padding: 19px 8px; border-bottom: 1px solid #deddd5; }
+.leader-row:last-child { border-bottom: 0; }.rank { color: #d95d39; font: 700 1.6rem var(--mono); }.leader-row small { display: block; color: #778078; }
+.team-card, .workout-card, .user-card { height: 100%; padding: 24px; background: #f8f4ec; border: 1px solid #deddd5; }.team-card h2, .workout-card h2, .user-card h2 { margin: 5px 0 10px; font-size: 1.3rem; }.team-card p:last-child, .workout-card p { color: #66736c; }
+.user-card { display: flex; align-items: center; gap: 15px; }.user-card p { margin: 0; font-size: .85rem; color: #778078; }.avatar { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: #15251d; color: #f8f4ec; font-weight: 700; }
+.tag { color: #d95d39; font: 700 .7rem var(--mono); text-transform: uppercase; }.workout-card footer { display: flex; justify-content: space-between; color: #52605a; font-size: .8rem; text-transform: capitalize; }.workout-card footer span { color: #778078; }
+.status { color: #778078; padding: 24px 0; }
+@media (max-width: 700px) { .app-header { align-items: flex-start; flex-direction: column; }.nav-pills { justify-content: flex-start; }.page-content { padding-top: 4vh; }.home-panel { padding: 8vh 0; }.resource-body { padding: 14px; }.leader-row { gap: 10px; } }

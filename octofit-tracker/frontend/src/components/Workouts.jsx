@@ -1,0 +1,7 @@
+import { useEffect, useState } from 'react'
+import { fetchCollection } from '../api.js'
+import { DataState, ResourcePage } from './ResourcePage.jsx'
+
+// API endpoint: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/workouts/
+export default function Workouts() { const { data, loading, error } = useResource(); return <ResourcePage title="Workouts" intro="A considered plan makes showing up easier."><DataState loading={loading} error={error} empty={!data.length} />{!loading && !error && <div className="row g-3">{data.map((workout) => <article className="col-md-6" key={workout._id}><div className="workout-card"><div className="d-flex justify-content-between gap-3"><span className="tag">{workout.type}</span><small>{workout.durationMinutes} min</small></div><h2>{workout.title}</h2><p>{workout.description}</p><footer>{workout.difficulty} <span>{workout.exercises?.length || 0} exercises</span></footer></div></article>)}</div>}</ResourcePage> }
+function useResource() { const [state, setState] = useState({ data: [], loading: true, error: '' }); useEffect(() => { const controller = new AbortController(); fetchCollection('workouts', controller.signal).then((data) => setState({ data, loading: false, error: '' })).catch((error) => { if (error.name !== 'AbortError') setState({ data: [], loading: false, error: error.message }) }); return () => controller.abort() }, []); return state }

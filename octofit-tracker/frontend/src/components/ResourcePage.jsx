@@ -1,0 +1,2 @@
+export function ResourcePage({ title, intro, children }) { return <section className="resource-page"><p className="eyebrow">OCTOFIT / DASHBOARD</p><h1>{title}</h1><p className="page-intro">{intro}</p><div className="resource-body">{children}</div></section> }
+export function DataState({ loading, error, empty }) { if (loading) return <p className="status">Loading data...</p>; if (error) return <p className="alert alert-warning">{error}. Check the API and your environment configuration.</p>; if (empty) return <p className="status">No records yet.</p>; return null }

@@ -2,5 +2,6 @@ import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 import { DataState, ResourcePage } from './ResourcePage.jsx'
 
+// API endpoint: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams/
 export default function Teams() { const { data, loading, error } = useResource(); return <ResourcePage title="Teams" intro="Find your crew and keep each other moving."><DataState loading={loading} error={error} empty={!data.length} />{!loading && !error && <div className="row g-3">{data.map((team) => <article className="col-md-6" key={team._id}><div className="team-card"><p className="eyebrow">{team.members?.length || 0} MEMBERS</p><h2>{team.name}</h2><p>{team.description}</p></div></article>)}</div>}</ResourcePage> }
 function useResource() { const [state, setState] = useState({ data: [], loading: true, error: '' }); useEffect(() => { const controller = new AbortController(); fetchCollection('teams', controller.signal).then((data) => setState({ data, loading: false, error: '' })).catch((error) => { if (error.name !== 'AbortError') setState({ data: [], loading: false, error: error.message }) }); return () => controller.abort() }, []); return state }

@@ -3,6 +3,7 @@ import { fetchCollection } from '../api.js'
 import { DataState, ResourcePage } from './ResourcePage.jsx'
 import { formatDate } from './formatters.js'
 
+// API endpoint: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/
 export default function Activities() {
   const { data, loading, error } = useResource('activities')
   return <ResourcePage title="Activity log" intro="Recent movement from across the OctoFit community.">
